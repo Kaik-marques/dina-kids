@@ -165,45 +165,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Video Autoplay & Unmute Logic
-    const mainVideo = document.getElementById('main-video');
-    const unmuteBtn = document.getElementById('unmute-btn');
-
-    if (mainVideo) {
-        mainVideo.play().catch(error => {
-            console.log("Autoplay bloqueado pelo navegador, aguardando interação.");
-        });
-
-        const enableAudio = () => {
-            mainVideo.muted = false;
-            mainVideo.volume = 1;
-            mainVideo.currentTime = 0; // Reinicia o vídeo para o início
-            if (unmuteBtn) unmuteBtn.style.display = 'none';
-
-            // Garante que o vídeo continue tocando
-            mainVideo.play();
-        };
-
-        if (unmuteBtn) {
-            unmuteBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                enableAudio();
-            });
-        }
-
-        // Silencia e reinicia ao chegar no fim
-        mainVideo.addEventListener('ended', () => {
-            mainVideo.muted = true;
-            mainVideo.play();
-            // Mostra o botão novamente se quiser que ele possa clicar de novo
-            if (unmuteBtn) unmuteBtn.style.display = 'flex';
-        });
-
-        // Tenta ativar também ao clicar em qualquer lugar do container do vídeo
-        const videoContainer = document.querySelector('.video-container');
-        if (videoContainer) {
-            videoContainer.addEventListener('click', enableAudio);
-        }
-    }
 });
