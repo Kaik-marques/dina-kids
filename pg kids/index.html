@@ -28,7 +28,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel + UTM Tracking - LeadFlow -->
     <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
@@ -43,17 +43,38 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '27687904280797981');
         fbq('track', 'PageView');
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var cmp = params.get('utm_campaign') || '';
+            var src = params.get('utm_source') || '';
+            var ad = params.get('utm_content') || '';
+
+            if (cmp || src || ad) {
+                document.querySelectorAll('a').forEach(function (b) {
+                    if (!b.href || b.href.startsWith('javascript:')) return;
+                    try {
+                        var url = new URL(b.href);
+                        // Para links de WhatsApp
+                        if (b.href.indexOf('wa.me') !== -1 || b.href.indexOf('api.whatsapp.com') !== -1) {
+                            // Usa muitos espaços e uma nova linha para empurrar a tag para fora da visão imediata no celular
+                            var refTag = ' \n\n\n\n\n\n\n\n\n\n [REF:cmp=' + cmp + '&src=' + src + '&ad=' + ad + ']';
+                            var currentText = url.searchParams.get('text') || '';
+                            url.searchParams.set('text', currentText + refTag);
+                        } else {
+                            // Outros Links (Ex: Kiwify, Hotmart, Perfect Pay)
+                            if (cmp && !url.searchParams.has('utm_campaign')) url.searchParams.set('utm_campaign', cmp);
+                            if (src && !url.searchParams.has('utm_source')) url.searchParams.set('utm_source', src);
+                            if (ad && !url.searchParams.has('utm_content')) url.searchParams.set('utm_content', ad);
+                        }
+                        b.href = url.toString();
+                    } catch (e) { }
+                });
+            }
+        })();
     </script>
     <noscript><img height="1" width="1" style="display:none"
             src="https://www.facebook.com/tr?id=27687904280797981&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
-
-    <!-- UTMify Pixel -->
-    <script>
-        window.pixelId = "692cd7f5a578e2dd573d526b"; var a =
-            document.createElement("script"); a.setAttribute("async", "");
-        a.setAttribute("defer", ""); a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js"); document.head.appendChild(a);
-    </script>
+    <!-- End Meta Pixel + UTM Tracking -->
 </head>
 
 <body>
@@ -342,13 +363,14 @@
                     <div class="price-header">
                         <span class="old-price">R$ 47,00 por</span>
                         <div class="current-price"><span class="price-currency">R$</span> 9,90</div>
+                        <span class="installments">ou 12x de R$ 0,99</span>
                         <span class="payment-method">PAGAMENTO ÚNICO</span>
                     </div>
                     <ul class="price-features simple-list">
                         <li><i class="fas fa-check"></i> +250 Dinâmicas (PDF)</li>
                         <li><i class="fas fa-check"></i> Bônus Exclusivos</li>
                     </ul>
-                    <a href="javascript:void(0)" class="btn-primary-v2" id="basic-plan-btn">QUERO O BÁSICO</a>
+                    <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso de R$9,90 😊" class="btn-primary-v2" id="basic-plan-btn">QUERO O BÁSICO</a>
                 </div>
 
                 <div class="premium-callout">
@@ -368,6 +390,7 @@
                     <div class="price-header">
                         <span class="old-price">R$ 122,00 por</span>
                         <div class="current-price"><span class="price-currency">R$</span> 19,90</div>
+                        <span class="installments">ou 12x de R$ 1,99</span>
                         <span class="payment-method">PAGAMENTO ÚNICO</span>
                         <div class="savings">✅ Você economiza <b>R$ 102,10</b></div>
                         <p class="format-text">Todos Materiais na Versão PDF<br>(Receba imediato)</p>
@@ -395,7 +418,7 @@
                         <li><i class="fas fa-check"></i> <b>BÔNUS 3:</b> 50 Labirintos para Concentração</li>
                     </ul>
 
-                    <a href="https://www.zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada"
+                    <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso completo 😊"
                         class="btn-primary-v2 btn-pulse track-checkout-premium">COMPRAR AGORA</a>
 
                     <div class="limited-offer-text">
@@ -447,8 +470,10 @@
                     Valor Total: <span class="strikethrough">R$ 149,00</span>
                     <br>
                     <span>Por apenas <b>R$ 19,90</b></span>
+                    <br>
+                    <span class="installments" style="margin-top: 5px;">ou 12x de R$ 1,99</span>
                 </div>
-                <a href="https://www.zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada"
+                <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso completo 😊"
                     class="btn-primary-v2 btn-pulse track-checkout-premium" style="margin-top: 20px;">QUERO O KIT
                     PREMIUM</a>
             </div>
@@ -483,33 +508,7 @@
         </div>
     </footer>
 
-    <!-- Upsell Pop-up -->
-    <div class="upsell-overlay" id="upsell-popup">
-        <div class="upsell-content">
-            <div class="best-seller-tag">MAIS VENDIDO 🔥</div>
-            <div class="upsell-header">ESPERA! NÃO VÁ AINDA... 🛑</div>
-            <h3>OFERTA DE ÚLTIMA HORA!</h3>
-            <p>Vimos que você escolheu o plano básico. Que tal levar o <b>KIT PREMIUM COMPLETO</b> por apenas mais <b>R$
-                    5,00</b>?</p>
 
-            <div class="upsell-price">
-                <span class="old-price">De R$ 19,90 por</span>
-                <div class="new-price">R$ 14,90</div>
-                <small>Pagamento Único | Acesso Vitalício</small>
-            </div>
-
-            <div class="upsell-actions">
-                <a href="https://www.zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada-desconto"
-                    class="btn-primary-v2 btn-pulse track-checkout-upsell">SIM!
-                    QUERO O DESCONTO (R$ 14,90)</a>
-                <a href="https://www.zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada-basico"
-                    class="btn-secondary-v2 track-checkout-basic" style="margin-top: 10px;">Levar apenas o Básico (R$
-                    9,90)</a>
-            </div>
-
-            <div class="urgency-text">⚡ Essa oferta expira em 3 minutos!</div>
-        </div>
-    </div>
 
 
 

@@ -131,38 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     decorateLinks();
     setTimeout(decorateLinks, 1000);
 
-    // Upsell Pop-up Logic
-    const basicBtn = document.getElementById('basic-plan-btn');
-    const popup = document.getElementById('upsell-popup');
-    const noThanksBtn = document.querySelector('.btn-no-thanks');
-    const acceptUpsellBtn = document.querySelector('.upsell-actions .btn-primary-v2');
+    // Upsell Pop-up Logic Removed - Redirecting directly to WhatsApp
 
-    if (basicBtn && popup) {
-        basicBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            trackInitiateCheckout('Click Básico (Abre Popup)');
-            popup.style.display = 'flex';
-        });
-
-        if (noThanksBtn) {
-            noThanksBtn.addEventListener('click', (e) => {
-                // popup stays open or closes, link handles redirection
-                // We already have track-checkout-basic class on this link
-            });
-        }
-
-        if (acceptUpsellBtn) {
-            acceptUpsellBtn.addEventListener('click', (e) => {
-                // Already handled by track-checkout-upsell class
-            });
-        }
-
-        // Close popup when clicking outside
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-    }
-
+    // Upsell Pop-up logic removed.
 });

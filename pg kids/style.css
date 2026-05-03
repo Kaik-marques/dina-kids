@@ -702,6 +702,14 @@ body {
     margin-top: -5px;
 }
 
+.installments {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--success);
+    margin: 5px 0;
+}
+
 .savings {
     color: #2bb22a;
     font-weight: 700;
