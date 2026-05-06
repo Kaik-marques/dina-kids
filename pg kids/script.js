@@ -107,7 +107,30 @@ document.addEventListener('DOMContentLoaded', () => {
     decorateLinks();
     setTimeout(decorateLinks, 1000);
 
-    // Upsell Pop-up Logic Removed - Redirecting directly to WhatsApp
+    // Upsell Pop-up Logic
+    const basicBtn = document.getElementById('basic-plan-btn');
+    const popup = document.getElementById('upsell-popup');
+    const declineUpsellBtn = document.getElementById('decline-upsell');
 
-    // Upsell Pop-up logic removed.
+    if (basicBtn && popup) {
+        basicBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            trackInitiateCheckout('Iniciou Checkout Básico (Abre Pop-up)');
+            popup.style.display = 'flex';
+        });
+
+        if (declineUpsellBtn) {
+            declineUpsellBtn.addEventListener('click', () => {
+                trackInitiateCheckout('Recusou Upsell - Indo para Básico');
+                window.location.href = basicBtn.href;
+            });
+        }
+        
+        // Close popup when clicking outside content
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+    }
 });
