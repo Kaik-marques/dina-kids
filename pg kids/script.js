@@ -1,29 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Carousel Logic
-    const track = document.querySelector('.carousel-track');
-    const items = document.querySelectorAll('.carousel-item');
-    const nextBtn = document.querySelector('.next');
-    const prevBtn = document.querySelector('.prev');
-
-    let currentIndex = 0;
-
-    function updateCarousel() {
-        const itemWidth = items[0].getBoundingClientRect().width;
-        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-    }
-
-    nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateCarousel();
-    });
-
-    prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-        updateCarousel();
-    });
-
-    // Auto-resize carousel on window resize
-    window.addEventListener('resize', updateCarousel);
+    // Infinite Marquee is handled via CSS animations in style.css
 
     // FAQ Logic
     const faqItems = document.querySelectorAll('.faq-item');

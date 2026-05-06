@@ -99,14 +99,11 @@
 
             <div class="hero-content">
                 <div class="mockup-placeholder" id="main-mockup">
-                    <img src="mockup abaixo da headline.webp" alt="Conheça o Material" class="hero-mockup-img" style="width: 100%; height: auto; border-radius: 18px; box-shadow: 0 15px 45px rgba(0,0,0,0.15); display: block;">
+                    <img src="mockup abaixo da headline.webp" alt="Conheça o Material" class="hero-mockup-img"
+                        style="width: 100%; height: auto; border-radius: 18px; box-shadow: 0 15px 45px rgba(0,0,0,0.15); display: block;">
                 </div>
 
                 <div class="hero-cta">
-                    <div class="badges">
-                        <span class="badge yellow">MAIS VENDIDO</span>
-                        <span class="badge blue">ACESSO IMEDIATO</span>
-                    </div>
                     <a href="#pricing" class="btn-primary">
                         QUERO MEU ACESSO AGORA!
                         <small>Aproveite o desconto de lançamento</small>
@@ -144,7 +141,7 @@
     <section class="benefits">
         <div class="container">
             <div class="benefits-box">
-                <h2>Por que você precisa deste material?</h2>
+                <h2 class="section-title">Por que você precisa deste material?</h2>
                 <ul class="benefits-list">
                     <li><i class="fas fa-check"></i> Reduza o ruído excessivo em sala de aula.</li>
                     <li><i class="fas fa-check"></i> Dinâmicas rápidas (5 a 10 minutos).</li>
@@ -161,26 +158,48 @@
         </div>
     </section>
 
-    <!-- Carousel Section -->
-    <section class="carousel-section">
+    <!-- Infinite Marquee Section -->
+    <section class="marquee-section">
         <div class="container">
             <h2 class="section-title">Veja um pouco do que você vai encontrar</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-item"><img src="img produto 1.webp" alt="Preview do Material 1" loading="lazy"
-                            decoding="async"></div>
-                    <div class="carousel-item"><img src="img produto  2.webp" alt="Preview do Material 2" loading="lazy"
-                            decoding="async"></div>
-                    <div class="carousel-item"><img src="img produto  3.webp" alt="Preview do Material 3" loading="lazy"
-                            decoding="async"></div>
-                    <div class="carousel-item"><img src="img produto 4.webp" alt="Preview do Material 4" loading="lazy"
-                            decoding="async"></div>
-                    <div class="carousel-item"><img src="img produto 5.webp" alt="Preview do Material 5" loading="lazy"
-                            decoding="async"></div>
+        </div>
+
+        <div class="marquee-container">
+            <!-- Row 1: Left -->
+            <div class="marquee-wrapper">
+                <div class="marquee-track left">
+                    <div class="marquee-item"><img src="img produto 1.webp" alt="Preview 1" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto  2.webp" alt="Preview 2" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto  3.webp" alt="Preview 3" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 4.webp" alt="Preview 4" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 5.webp" alt="Preview 5" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 6.PNG" alt="Preview 6" loading="lazy"></div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-item"><img src="img produto 1.webp" alt="Preview 1" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto  2.webp" alt="Preview 2" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto  3.webp" alt="Preview 3" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 4.webp" alt="Preview 4" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 5.webp" alt="Preview 5" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 6.PNG" alt="Preview 6" loading="lazy"></div>
                 </div>
-                <div class="carousel-nav">
-                    <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Row 2: Right -->
+            <div class="marquee-wrapper">
+                <div class="marquee-track right">
+                    <div class="marquee-item"><img src="img produto 7.PNG" alt="Preview 7" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 8.PNG" alt="Preview 8" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 9.PNG" alt="Preview 9" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 10.PNG" alt="Preview 10" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 11.PNG" alt="Preview 11" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 12.PNG" alt="Preview 12" loading="lazy"></div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-item"><img src="img produto 7.PNG" alt="Preview 7" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 8.PNG" alt="Preview 8" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 9.PNG" alt="Preview 9" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 10.PNG" alt="Preview 10" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 11.PNG" alt="Preview 11" loading="lazy"></div>
+                    <div class="marquee-item"><img src="img produto 12.PNG" alt="Preview 12" loading="lazy"></div>
                 </div>
             </div>
         </div>
@@ -189,7 +208,7 @@
     <!-- How it Works -->
     <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title">Como funciona o acesso?</h2>
+            <h2 class="section-title centered">Como funciona o acesso?</h2>
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-icon"><i class="fas fa-envelope"></i></div>
@@ -354,37 +373,15 @@
 
     <!-- Pricing Section -->
     <section id="pricing" class="pricing">
-        <div class="pricing-top-bar">OFERTA EXCLUSIVA!</div>
+        <div class="offer-today-strip">OFERTA HOJE</div>
         <div class="container">
             <h2 class="section-title">Escolha o seu Plano</h2>
             <div class="pricing-grid">
-                <!-- Basic Plan -->
-                <div class="pricing-card">
-                    <div class="price-header">
-                        <span class="old-price">R$ 47,00 por</span>
-                        <div class="current-price"><span class="price-currency">R$</span> 9,90</div>
-                        <span class="installments">ou 12x de R$ 0,99</span>
-                        <span class="payment-method">PAGAMENTO ÚNICO</span>
-                    </div>
-                    <ul class="price-features simple-list">
-                        <li><i class="fas fa-check"></i> +250 Dinâmicas (PDF)</li>
-                        <li><i class="fas fa-check"></i> Bônus Exclusivos</li>
-                    </ul>
-                    <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso de R$9,90 😊" class="btn-primary-v2" id="basic-plan-btn">QUERO O BÁSICO</a>
-                </div>
-
-                <div class="premium-callout">
-                    <strong>AINDA DÁ TEMPO DE LEVAR A MELHOR OPÇÃO!</strong>
-                    <p>O Plano Premium inclui mais dinâmicas, atualizações e os 3 bônus exclusivos.</p>
-                    <div class="pendulum-arrows">
-                        <i class="fas fa-chevron-down"></i>
-                        <i class="fas fa-chevron-down"></i>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-
-                <!-- Premium Plan -->
+                <!-- Premium Plan (Featured) -->
                 <div class="pricing-card featured">
+                    <div class="card-mockup">
+                        <img src="mockup abaixo da headline.webp" alt="Mockup Premium" class="premium-mockup-img">
+                    </div>
                     <div class="featured-tag">KIT PREMIUM</div>
 
                     <div class="price-header">
@@ -399,7 +396,8 @@
                     <div class="divider"></div>
 
                     <ul class="price-features detailed-list">
-                        <li class="guarantee-item"><i class="fas fa-chevron-right"></i> 7 Dias de garantia incondicional
+                        <li class="guarantee-item"><i class="fas fa-chevron-right"></i> 30 Dias de garantia
+                            incondicional
                         </li>
                         <li class="you-get-item"><i class="fas fa-chevron-right"></i> <b>Você leva TUDO isso: 📑</b>
                         </li>
@@ -416,6 +414,7 @@
                         <li><i class="fas fa-check"></i> <b>BÔNUS 1:</b> 200 Atividades de Atenção</li>
                         <li><i class="fas fa-check"></i> <b>BÔNUS 2:</b> 62 Dinâmicas Ed. Infantil</li>
                         <li><i class="fas fa-check"></i> <b>BÔNUS 3:</b> 50 Labirintos para Concentração</li>
+                        <li><i class="fab fa-whatsapp" style="color: #25d366;"></i> Suporte via Whatsapp</li>
                     </ul>
 
                     <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso completo 😊"
@@ -429,6 +428,23 @@
                         <img src="logo da visa.jpg" alt="Visa" loading="lazy" decoding="async">
                         <img src="logo do pix.png" alt="Pix" loading="lazy" decoding="async">
                     </div>
+                </div>
+
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <div class="price-header">
+                        <span class="old-price">R$ 47,00 por</span>
+                        <div class="current-price"><span class="price-currency">R$</span> 9,90</div>
+                        <span class="installments">ou 12x de R$ 0,99</span>
+                        <span class="payment-method">PAGAMENTO ÚNICO</span>
+                    </div>
+                    <ul class="price-features simple-list">
+                        <li><i class="fas fa-check"></i> 100 Dinâmicas (PDF)</li>
+                        <li><i class="fas fa-check"></i> Bônus Exclusivos</li>
+                        <li><i class="fab fa-whatsapp" style="color: #25d366;"></i> Suporte via Whatsapp</li>
+                    </ul>
+                    <a href="https://wa.me/5583993675962?text=Oi! Vim pela página e quero garantir o acesso de R$9,90 😊"
+                        class="btn-primary-v2 track-checkout-basic" id="basic-plan-btn">QUERO O BÁSICO</a>
                 </div>
             </div>
 
@@ -444,10 +460,10 @@
 
             <!-- Guarantee (Below Timer) -->
             <div class="guarantee-box-v2">
-                <i class="fas fa-shield-halved"></i>
+                <img src="selo de garantia.webp" alt="Garantia 30 Dias" class="guarantee-seal-img">
                 <div>
-                    <p>7 DIAS DE GARANTIA INCONDICIONAL</p>
-                    <small>Se você não gostar do material, devolvemos seu dinheiro.</small>
+                    <p>30 DIAS DE GARANTIA INCONDICIONAL</p>
+                    <small>Se você não gostar do material, devolvemos seu dinheiro sem perguntas.</small>
                 </div>
             </div>
         </div>
