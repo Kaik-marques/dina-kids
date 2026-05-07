@@ -25,13 +25,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Smooth scroll
+    // Custom Fast Smooth Scroll
+    function fastSmoothScroll(target, duration) {
+        const targetElement = document.querySelector(target);
+        if (!targetElement) return;
+        
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) {
+                requestAnimationFrame(animation);
+            } else {
+                window.scrollTo(0, targetPosition);
+            }
+        }
+
+        function easeInOutQuad(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+
+        requestAnimationFrame(animation);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = this.getAttribute('href');
+            if (target !== '#') {
+                fastSmoothScroll(target, 800); // 800ms for a fast but visible descent
+            }
         });
     });
     // Countdown Timer Logic
@@ -67,8 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currency: 'BRL'
             });
         }
-        // UTMify usually tracks clicks automatically via URL decoration, 
-        // but explicit events can be added here if needed.
     }
 
     // Attach tracking to buttons
@@ -79,58 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.track-checkout-basic').forEach(btn => {
         btn.addEventListener('click', () => trackInitiateCheckout('Plano Básico'));
     });
-
-    document.querySelectorAll('.track-checkout-upsell').forEach(btn => {
-        btn.addEventListener('click', () => trackInitiateCheckout('Upsell Premium'));
-    });
-
-    // UTM Passing Logic for zuckpay.com.br
-    function decorateLinks() {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.toString()) {
-            const checkoutLinks = document.querySelectorAll('a[href*="zuckpay.com.br"]');
-            checkoutLinks.forEach(link => {
-                try {
-                    const url = new URL(link.href);
-                    urlParams.forEach((value, key) => {
-                        url.searchParams.set(key, value);
-                    });
-                    link.href = url.toString();
-                } catch (e) {
-                    console.error('Error decorating link:', e);
-                }
-            });
-        }
-    }
-
-    // Run decoration immediately and also after a short delay to catch any dynamic links
-    decorateLinks();
-    setTimeout(decorateLinks, 1000);
-
-    // Upsell Pop-up Logic
-    const basicBtn = document.getElementById('basic-plan-btn');
-    const popup = document.getElementById('upsell-popup');
-    const declineUpsellBtn = document.getElementById('decline-upsell');
-
-    if (basicBtn && popup) {
-        basicBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            trackInitiateCheckout('Iniciou Checkout Básico (Abre Pop-up)');
-            popup.style.display = 'flex';
-        });
-
-        if (declineUpsellBtn) {
-            declineUpsellBtn.addEventListener('click', () => {
-                trackInitiateCheckout('Recusou Upsell - Indo para Básico');
-                window.location.href = basicBtn.href;
-            });
-        }
-        
-        // Close popup when clicking outside content
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
-    }
 });
