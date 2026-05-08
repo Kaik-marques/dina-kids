@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando para Pagamento Seguro...</title>
+    
+    <!-- Scripts UTMify -->
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+
+    <script>
+      window.pixelId = "692cd7f5a578e2dd573d526b";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            color: #2d3436;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 400px;
+            border-radius: 24px;
+            background: #fff;
+        }
+        .loader {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 30px;
+        }
+        .loader-wheel {
+            animation: spin 1s linear infinite;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4ecdc4;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+        }
+        .loader-check {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #4ecdc4;
+            font-size: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        p {
+            margin: 0;
+            color: #636e72;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        .secure-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: #b2bec3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .secure-footer svg {
+            width: 14px;
+            height: 14px;
+            fill: #b2bec3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loader">
+            <div class="loader-wheel"></div>
+            <div class="loader-check">✓</div>
+        </div>
+        <h2>Quase lá!</h2>
+        <p>Estamos preparando seu ambiente de pagamento seguro e vitalício...</p>
+        
+        <div class="secure-footer">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            Pagamento 100% Protegido
+        </div>
+    </div>
+
+    <script>
+        // Configuração dos Links
+        const plans = {
+            'premium': 'https://zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada',
+            'basico': 'https://zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada-basico',
+            'oferta': 'https://zuckpay.com.br/checkout/250-dinamicas-para-turma-agitada-desconto'
+        };
+
+        function startRedirect() {
+            // Pega o parâmetro 'p' da URL (ex: ?p=premium)
+            const urlParams = new URLSearchParams(window.location.search);
+            const planKey = urlParams.get('p') || 'premium'; // Padrão é premium se não houver parâmetro
+            
+            // Define o link base de destino
+            let targetUrl = plans[planKey] || plans['premium'];
+
+            // Se o navegador já tiver parâmetros de UTM na URL atual, repassa eles
+            const currentParams = window.location.search;
+            if (currentParams) {
+                const separator = targetUrl.includes('?') ? '&' : '?';
+                // Remove o ?p=... para não sujar o link final se não quiser, 
+                // mas a UTMify prefere ter tudo disponível.
+                targetUrl += separator + currentParams.substring(1);
+            }
+
+            // Aguarda um pouco para os scripts da UTMify carregarem/lerem os cookies
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 1200); // 1.2 segundos para passar autoridade e segurança
+        }
+
+        window.addEventListener('load', startRedirect);
+    </script>
+</body>
+</html>
